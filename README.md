@@ -26,7 +26,42 @@ powershell -Command "npx skills list -g"
 
 ### 安装步骤
 
-**方法一：手动安装（推荐）**
+**方法一：标准安装流程（推荐）**
+
+这是最完整、最标准的安装方式，结合了原版的包结构和 Windows 兼容性修复。
+
+1. 安装原版 find-skills：
+```powershell
+npx skills add vercel-labs/skills@find-skills -g -y
+```
+
+2. 下载 [SKILL.md](./SKILL.md) 文件，**覆盖保存**到：
+```
+C:\Users\你的用户名\.agents\skills\find-skills\SKILL.md
+```
+
+3. 重启 Claude Code
+
+4. 验证安装：
+```
+对 Claude Code 说："帮我搜索一个 React 的 skill"
+```
+
+如果看到搜索结果（类似下面的输出），说明安装成功：
+```
+Install with npx skills add <owner/repo@skill>
+
+vercel-labs/agent-skills@vercel-react-best-practices
+└ https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices
+```
+
+**为什么要这样做？**
+- 步骤 1 安装原版，创建完整的包结构
+- 步骤 2 替换 SKILL.md，修复 Windows 兼容性问题（原版用 Bash，Windows 兼容版用 PowerShell）
+
+**方法二：纯手动安装（简化版）**
+
+如果步骤 1 的 `npx skills add` 命令无法正常工作，可以使用这个简化方法：
 
 1. 创建目录：
 ```powershell
@@ -45,7 +80,9 @@ C:\Users\你的用户名\.agents\skills\find-skills\SKILL.md
 对 Claude Code 说："帮我搜索一个 React 的 skill"
 ```
 
-**方法二：通过 Git 克隆**
+**注意**：这个方法虽然简单，但缺少完整的包结构，`npx skills list -g` 可能无法识别。不过对 Claude Code 来说完全可用。
+
+**方法三：通过 Git 克隆（适合开发者）**
 
 ```powershell
 # 克隆仓库
